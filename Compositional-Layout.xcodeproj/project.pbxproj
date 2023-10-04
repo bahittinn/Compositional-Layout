@@ -13,6 +13,7 @@
 		648E9D192ACCAC6C0021184A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 648E9D182ACCAC6C0021184A /* Assets.xcassets */; };
 		648E9D1C2ACCAC6C0021184A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 648E9D1A2ACCAC6C0021184A /* LaunchScreen.storyboard */; };
 		64E039452ACD8403007E1688 /* FoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E039442ACD8403007E1688 /* FoodController.swift */; };
+		64E039482ACD9B6C007E1688 /* denemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E039472ACD9B6C007E1688 /* denemeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		648E9D1B2ACCAC6C0021184A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		648E9D1D2ACCAC6D0021184A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64E039442ACD8403007E1688 /* FoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodController.swift; sourceTree = "<group>"; };
+		64E039472ACD9B6C007E1688 /* denemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = denemeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		648E9D0E2ACCAC6C0021184A /* Compositional-Layout */ = {
 			isa = PBXGroup;
 			children = (
+				64E039462ACD9A93007E1688 /* Cells */,
 				648E9D0F2ACCAC6C0021184A /* AppDelegate.swift */,
 				648E9D112ACCAC6C0021184A /* SceneDelegate.swift */,
 				648E9D132ACCAC6C0021184A /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				64E039442ACD8403007E1688 /* FoodController.swift */,
 			);
 			path = "Compositional-Layout";
+			sourceTree = "<group>";
+		};
+		64E039462ACD9A93007E1688 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				64E039472ACD9B6C007E1688 /* denemeCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				648E9D142ACCAC6C0021184A /* ViewController.swift in Sources */,
+				64E039482ACD9B6C007E1688 /* denemeCollectionViewCell.swift in Sources */,
 				648E9D102ACCAC6C0021184A /* AppDelegate.swift in Sources */,
 				648E9D122ACCAC6C0021184A /* SceneDelegate.swift in Sources */,
 				64E039452ACD8403007E1688 /* FoodController.swift in Sources */,

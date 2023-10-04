@@ -11,6 +11,8 @@ private let reuseIdentifier = "Cell"
 
 class FoodController: UICollectionViewController {
     
+    let resimArray: [String] = ["resim1","resim2","resim3","resim4"]
+    
     init() {
         
         super.init(collectionViewLayout: FoodController.createLayout())
@@ -27,7 +29,7 @@ class FoodController: UICollectionViewController {
         navigationItem.title = "Food Delivery"
         
         collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "deneme")
+        collectionView!.register(denemeCollectionViewCell.self, forCellWithReuseIdentifier: "denemeCell")
         collectionView.register(Header.self, forSupplementaryViewOfKind: FoodController.categoryHeaderId, withReuseIdentifier: headerId)
     }
     
@@ -38,7 +40,7 @@ class FoodController: UICollectionViewController {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
                                                                     heightDimension: .fractionalHeight(1)))
                 
-                item.contentInsets.trailing = 2
+                item.contentInsets.trailing = 5
                 //item.contentInsets.bottom   = 16
                 
                 let group = NSCollectionLayoutGroup.horizontal(
@@ -139,31 +141,54 @@ class FoodController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
+            return resimArray.count
         }
         return 8
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
         if indexPath.section == 0 {
-            cell.backgroundColor = .red
-        } else if indexPath.section == 1 {
-            cell.backgroundColor = .purple
-            cell.layer.cornerRadius = 10
-        } else if indexPath.section == 2 {
-            cell.backgroundColor = .blue
-            cell.layer.cornerRadius = 10
-        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "denemeCell", for: indexPath) as! denemeCollectionViewCell
             cell.backgroundColor = .lightGray
-            cell.layer.cornerRadius = 10
+            cell.configureImage(with: resimArray[indexPath.row])
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+            cell.backgroundColor = .lightGray
+            return cell
         }
         
         
+        
+        
+        
+        //        switch indexPath.section {
+        //        case 0:
+        //            cell.backgroundColor = .blue
+        //        default:
+        //            cell.backgroundColor = .gray
+        //        }
+        //
+        
+        
+        //        if indexPath.section == 0 {
+        //            cell.backgroundColor = .red
+        //        } else if indexPath.section == 1 {
+        //            cell.backgroundColor = .purple
+        //            cell.layer.cornerRadius = 10
+        //        } else if indexPath.section == 2 {
+        //            cell.backgroundColor = .blue
+        //            cell.layer.cornerRadius = 10
+        //        } else {
+        //            cell.backgroundColor = .lightGray
+        //            cell.layer.cornerRadius = 10
+        //        }
+        //
+        
         // Configure the cell
         
-        return cell
+        return UICollectionViewCell()
     }
 }
 
