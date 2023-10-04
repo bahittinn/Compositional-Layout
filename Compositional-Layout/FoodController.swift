@@ -11,7 +11,19 @@ private let reuseIdentifier = "Cell"
 
 class FoodController: UICollectionViewController {
     
-    let resimArray: [String] = ["resim1","resim2","resim3","resim4"]
+    let resimArray: [String] = ["resim4","resim2","resim3","resim1"]
+    
+    static let API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZjFjNzlmMDY5YjM4ZDI1NmMzYmExOTY2MDlkNDQ3ZCIsInN1YiI6IjY0Zjc2N2I1MWI3MjJjMDEzYTI1NjQyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vgMLzRMlTPrFzjc1HJqaphrO4UMJaMCvCMfkpFr1Xls"
+    
+    let baseUrl = "https://api.themoviedb.org"
+    
+    let headers = [
+        "accept": "application/json",
+        "Authorization": "Bearer \(FoodController.API_KEY)"
+    ]
+    
+    var titlesArray = [Title]()
+    
     
     init() {
         
@@ -27,10 +39,20 @@ class FoodController: UICollectionViewController {
         
         collectionView.backgroundColor = .white
         navigationItem.title = "Food Delivery"
-        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "newColor")]
         collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView!.register(denemeCollectionViewCell.self, forCellWithReuseIdentifier: "denemeCell")
         collectionView.register(Header.self, forSupplementaryViewOfKind: FoodController.categoryHeaderId, withReuseIdentifier: headerId)
+        
+        getTrendingMovies { repsonse in
+            switch repsonse {
+            case .success(let titles):
+                self.titlesArray = titles
+            case .failure(let error):
+                print("error is \(error)")
+            }
+            
+        }
     }
     
     static func createLayout() -> UICollectionViewCompositionalLayout {
@@ -119,6 +141,38 @@ class FoodController: UICollectionViewController {
         }
     }
     
+    func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
+        let request =  makeRequest(with: "\(baseUrl)/3/trending/movie/day?language=en-US")
+
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
+                completion(.success(results.results))
+    
+            } catch {
+                completion(.failure(error))
+            }
+            
+        })
+
+        dataTask.resume()
+    }
+    
+
+    
+    func makeRequest(with url: String) -> NSMutableURLRequest {
+        let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
+                                                cachePolicy: .useProtocolCachePolicy,
+                                            timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        return request
+    }
+    
+    
     static let categoryHeaderId = "categoryHeaderId"
     let headerId = "headerId"
     
@@ -198,6 +252,7 @@ class Header: UICollectionReusableView {
         super.init(frame: frame)
         
         label.text = "Categories"
+        label.textColor = UIColor(named: "newColor")
         addSubview(label)
     }
     

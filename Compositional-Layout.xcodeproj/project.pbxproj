@@ -14,6 +14,7 @@
 		648E9D1C2ACCAC6C0021184A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 648E9D1A2ACCAC6C0021184A /* LaunchScreen.storyboard */; };
 		64E039452ACD8403007E1688 /* FoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E039442ACD8403007E1688 /* FoodController.swift */; };
 		64E039482ACD9B6C007E1688 /* denemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E039472ACD9B6C007E1688 /* denemeCollectionViewCell.swift */; };
+		64E0394B2ACE1F50007E1688 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E0394A2ACE1F50007E1688 /* Title.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		648E9D1D2ACCAC6D0021184A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64E039442ACD8403007E1688 /* FoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodController.swift; sourceTree = "<group>"; };
 		64E039472ACD9B6C007E1688 /* denemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = denemeCollectionViewCell.swift; sourceTree = "<group>"; };
+		64E0394A2ACE1F50007E1688 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		648E9D0E2ACCAC6C0021184A /* Compositional-Layout */ = {
 			isa = PBXGroup;
 			children = (
+				64E039492ACE1F48007E1688 /* Models */,
 				64E039462ACD9A93007E1688 /* Cells */,
 				648E9D0F2ACCAC6C0021184A /* AppDelegate.swift */,
 				648E9D112ACCAC6C0021184A /* SceneDelegate.swift */,
@@ -76,6 +79,14 @@
 				64E039472ACD9B6C007E1688 /* denemeCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		64E039492ACE1F48007E1688 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				64E0394A2ACE1F50007E1688 /* Title.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +163,7 @@
 				64E039482ACD9B6C007E1688 /* denemeCollectionViewCell.swift in Sources */,
 				648E9D102ACCAC6C0021184A /* AppDelegate.swift in Sources */,
 				648E9D122ACCAC6C0021184A /* SceneDelegate.swift in Sources */,
+				64E0394B2ACE1F50007E1688 /* Title.swift in Sources */,
 				64E039452ACD8403007E1688 /* FoodController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
