@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class denemeCollectionViewCell: UICollectionViewCell {
  
@@ -19,7 +20,8 @@ class denemeCollectionViewCell: UICollectionViewCell {
     }()
     
     public func configureImage(with Name: String) {
-        imageV.image = UIImage(named: Name)
+        let url = URL(string: Name)
+        imageV.sd_setImage(with: url)
     }
     
     override func layoutSubviews() {

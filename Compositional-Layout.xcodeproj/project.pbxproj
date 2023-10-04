@@ -15,6 +15,7 @@
 		64E039452ACD8403007E1688 /* FoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E039442ACD8403007E1688 /* FoodController.swift */; };
 		64E039482ACD9B6C007E1688 /* denemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E039472ACD9B6C007E1688 /* denemeCollectionViewCell.swift */; };
 		64E0394B2ACE1F50007E1688 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E0394A2ACE1F50007E1688 /* Title.swift */; };
+		64E0394E2ACE227D007E1688 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 64E0394D2ACE227D007E1688 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E0394E2ACE227D007E1688 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +107,9 @@
 			dependencies = (
 			);
 			name = "Compositional-Layout";
+			packageProductDependencies = (
+				64E0394D2ACE227D007E1688 /* SDWebImage */,
+			);
 			productName = "Compositional-Layout";
 			productReference = 648E9D0C2ACCAC6C0021184A /* Compositional-Layout.app */;
 			productType = "com.apple.product-type.application";
@@ -133,6 +138,9 @@
 				Base,
 			);
 			mainGroup = 648E9D032ACCAC6C0021184A;
+			packageReferences = (
+				64E0394C2ACE227D007E1688 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 648E9D0D2ACCAC6C0021184A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -370,6 +378,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		64E0394C2ACE227D007E1688 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		64E0394D2ACE227D007E1688 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64E0394C2ACE227D007E1688 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 648E9D042ACCAC6C0021184A /* Project object */;
 }

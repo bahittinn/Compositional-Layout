@@ -47,7 +47,10 @@ class FoodController: UICollectionViewController {
         getTrendingMovies { repsonse in
             switch repsonse {
             case .success(let titles):
-                self.titlesArray = titles
+                DispatchQueue.main.async {
+                    self.titlesArray = titles
+                    self.collectionView.reloadData()
+                }
             case .failure(let error):
                 print("error is \(error)")
             }
@@ -195,18 +198,29 @@ class FoodController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return resimArray.count
+            return titlesArray.count
         }
         return 8
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+       
+        
         if indexPath.section == 0 {
+            
+            let photo = titlesArray[indexPath.row].poster_path ?? "/fyuUJcUIsY0g5tHOC2UDmv1PiJL.jpg"
+            let photoURL = "https://image.tmdb.org/t/p/w500/\(photo)"
+            
+            let url = URL(string: photoURL)
+            
+            print(photoURL)
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "denemeCell", for: indexPath) as! denemeCollectionViewCell
             cell.backgroundColor = .lightGray
-            cell.configureImage(with: resimArray[indexPath.row])
+            cell.configureImage(with: photoURL)
             return cell
+            
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
             cell.backgroundColor = .lightGray
