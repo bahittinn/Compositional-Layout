@@ -27,6 +27,7 @@ class FoodController: UICollectionViewController {
         navigationItem.title = "Food Delivery"
         
         collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "deneme")
         collectionView.register(Header.self, forSupplementaryViewOfKind: FoodController.categoryHeaderId, withReuseIdentifier: headerId)
     }
     
@@ -89,13 +90,13 @@ class FoodController: UICollectionViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 section.contentInsets.leading = 16
-
+                
                 section.boundarySupplementaryItems = [
                     .init(layoutSize: .init(widthDimension: .fractionalWidth(1),
                                             heightDimension: .absolute(50)),
                           elementKind: categoryHeaderId,
                           alignment: .topLeading)
-                    ]
+                ]
                 
                 return section
             } else {
@@ -146,7 +147,20 @@ class FoodController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        cell.backgroundColor = .red
+        if indexPath.section == 0 {
+            cell.backgroundColor = .red
+        } else if indexPath.section == 1 {
+            cell.backgroundColor = .purple
+            cell.layer.cornerRadius = 10
+        } else if indexPath.section == 2 {
+            cell.backgroundColor = .blue
+            cell.layer.cornerRadius = 10
+        } else {
+            cell.backgroundColor = .lightGray
+            cell.layer.cornerRadius = 10
+        }
+        
+        
         // Configure the cell
         
         return cell
@@ -157,7 +171,7 @@ class Header: UICollectionReusableView {
     let label = UILabel()
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         label.text = "Categories"
         addSubview(label)
     }
