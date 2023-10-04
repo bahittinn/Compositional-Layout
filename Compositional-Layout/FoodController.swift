@@ -27,6 +27,7 @@ class FoodController: UICollectionViewController {
         navigationItem.title = "Food Delivery"
         
         collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(Header.self, forSupplementaryViewOfKind: FoodController.categoryHeaderId, withReuseIdentifier: headerId)
     }
     
     static func createLayout() -> UICollectionViewCompositionalLayout {
@@ -51,8 +52,8 @@ class FoodController: UICollectionViewController {
                 return section
             } else {
                 
-                let item  = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(50),
-                                                                     heightDimension: .absolute(50)))
+                let item  = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.25),
+                                                                     heightDimension: .absolute(150)))
                 
                 item.contentInsets.trailing = 16
                 item.contentInsets.bottom   = 16
@@ -63,9 +64,27 @@ class FoodController: UICollectionViewController {
                     subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
+                section.contentInsets.leading = 16
+                
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                            heightDimension: .absolute(50)),
+                          elementKind: categoryHeaderId,
+                          alignment: .topLeading)
+                ]
+                
                 return section
             }
         }
+    }
+    
+    static let categoryHeaderId = "categoryHeaderId"
+    let headerId = "headerId"
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+        
+        return header
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -78,7 +97,7 @@ class FoodController: UICollectionViewController {
         if section == 0 {
             return 3
         }
-        return 14
+        return 8
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,7 +108,25 @@ class FoodController: UICollectionViewController {
         
         return cell
     }
+}
+
+class Header: UICollectionReusableView {
+    let label = UILabel()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        label.text = "Categories"
+        addSubview(label)
+    }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        label.frame = bounds
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     
 }
